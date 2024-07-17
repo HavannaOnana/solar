@@ -1,24 +1,30 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import * as THREE from "three";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
 
-setupCounter(document.querySelector('#counter'))
+//adding a renderer
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth , window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+document.appendChild(renderer.domElement);
+
+//making a camera
+const fov = 50;
+const aspect = window.innerWidth / window.innerHeight;
+const near = 0.1;
+const far = 100;
+
+const camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
+camera.postion = 2;
+
+//making a scene 
+const scene = new THREE.Scene();
+
+
+//rendering it in a function]
+function animate(){
+  requestAnimationFrame(animate)
+  renderer.render(scene,camera);
+}
+
+
