@@ -2,7 +2,9 @@ import './style.css'
 import * as THREE from "three";
 import getStarfield from '../getStarfield';
 import createParticleSystem from '../particleSystem';
-
+import { EffectComposer } from 'three/examples/jsm/Addons.js';
+import { RenderPass } from 'three/examples/jsm/Addons.js';
+import { UnrealBloomPass } from 'three/examples/jsm/Addons.js';
 
 //adding a renderer
 const renderer = new THREE.WebGLRenderer();
@@ -32,6 +34,10 @@ scene.fog = new THREE.FogExp2(0x000000, 0.05); // Fog with exponential decay
 const particleColor = new THREE.Color("white");
 const particleSystem = createParticleSystem(200 , particleColor);
 scene.add(particleSystem);
+
+//making a composer
+
+
 
 
 //rendering it in a function]
