@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from "three";
 import getStarfield from '../getStarfield';
+import createParticleSystem from '../particleSystem';
 
 
 //adding a renderer
@@ -27,12 +28,17 @@ scene.add(stars)
 
 scene.fog = new THREE.FogExp2(0x000000, 0.05); // Fog with exponential decay
 
+//adding particles
+const particleColor = new THREE.Color("white");
+const particleSystem = createParticleSystem(1000 , particleColor);
+scene.add(particleSystem);
 
 
 //rendering it in a function]
 function animate(){
   requestAnimationFrame(animate)
   stars.rotation.y += 0.0001; // Rotate the starfield
+  particleSystem.rotation.y += 0.001;
   renderer.render(scene,camera);
 }
 
