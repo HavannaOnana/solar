@@ -30,7 +30,7 @@ scene.fog = new THREE.FogExp2(0x000000, 0.05); // Fog with exponential decay
 
 //adding particles
 const particleColor = new THREE.Color("white");
-const particleSystem = createParticleSystem(1000 , particleColor);
+const particleSystem = createParticleSystem(200 , particleColor);
 scene.add(particleSystem);
 
 
@@ -38,7 +38,7 @@ scene.add(particleSystem);
 function animate(){
   requestAnimationFrame(animate)
   stars.rotation.y += 0.0001; // Rotate the starfield
-  particleSystem.rotation.y += 0.001;
+  particleSystem.rotation.z += 0.0001;
   renderer.render(scene,camera);
 }
 
