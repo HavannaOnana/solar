@@ -1,53 +1,59 @@
 import * as THREE from "three";
 
-
-export default function createFlameParticleSystem(particleCount = 2000 , color = new THREE.Color("white")){
-
-    //making a gemoetry and its positions
-    const particles =  new THREE.BufferGeometry();
+export default function createFlameParticleSystem(particleCount = 2000, color = new THREE.Color("white")) {
+    // Create geometry and its attributes
+    const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
-    const lifespans = new Float32Array(particleCount * 3);
+    const lifespans = new Float32Array(particleCount);
 
+    // Sphere parameters
+    const radius = 10;
+    for (let i = 0; i < particleCount; i++) {
+        // Random spherical coordinates
+        const theta = Math.random() * 2 * Math.PI; // Angle around the Z-axis
+        const phi = Math.acos(2 * Math.random() - 1); // Angle from the Z-axis
 
-    //initializing the particles attributes
-    for(let i = 0 ; i < particleCount; i++){
-        positions[i * 3] = Math.random() * 2 - 1 ; // x axis
-        positions[i * 3 + 1] = Math.random() * 2 - 1; // y axis
-        positions[i * 3  + 2]= Math.random() * 2 - 1; //z axis
+        // Convert spherical coordinates to Cartesian coordinates
+        positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta); // x
+        positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta); // y
+        positions[i * 3 + 2] = radius * Math.cos(phi); // z
 
-        // the velocities
-        velocities[i * 3] = (Math.random() - 0.5) * 0.05; // velocity x
-        velocities[i * 3 + 1] =(Math.random() - 0.5) * 0.05; // velocity y
-        velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.05; //velocity z
+        // Velocities
+        velocities[i * 3] = (Math.random() - 0.5) * 0.5; // velocity x
+        velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.5; // velocity y
+        velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.5; // velocity z
 
-        //lifespans
-        lifespans[i] = Math.random() * 5 + 1 ; 
+        // Lifespans
+        lifespans[i] = Math.random() * 5 + 1;
 
-        //colors
-        colors[i * 3] = color.r; //r
-        colors[i * 3 + 1] = color.g; //g
-        colors[i * 3 + 2] = color.b; //b
+        // Colors
+        colors[i * 3] = color.r; // r
+        colors[i * 3 + 1] = color.g; // g
+        colors[i * 3 + 2] = color.b; // b
     }
 
+    // Set attributes for the particles
+    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    particles.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+    particles.setAttribute('lifespan', new THREE.BufferAttribute(lifespans, 1));
 
-    //setting the attributes for the partciles
-    particles.setAttribute('position', new THREE.BufferAttribute(positions , 3));
-    particles.setAttribute('color', new THREE.BufferAttribute(colors , 3));
-    particles.setAttribute('velocity', new THREE.BufferAttribute(velocities , 3));
-    particles.setAttribute('lifespan' , new THREE.BufferAttribute(lifespans , 1));
+    // Load texture
+    const textureLoader = new THREE.TextureLoader();
+    const flameTexture = textureLoader.load("/textures/sun.png");
 
-    //particleMaterial
+    // Particle material
     const particleMaterial = new THREE.PointsMaterial({
-        size : 0.005,
-        vertexColors : true,
-        blending : THREE.AdditiveBlending,
-        transparent: true
-    })
+        size: 3, // Adjust size if needed
+        map: flameTexture,
+        vertexColors: true,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        alphaTest: 0.1 // Ensure this is appropriate for your texture
+    });
 
-    const particleSystem = new THREE.Points(particles , particleMaterial);
-    return particleSystem
-
-
+    const particleSystem = new THREE.Points(particles, particleMaterial);
+    return particleSystem;
 }

@@ -22,7 +22,7 @@ const near = 0.1;
 const far = 700;
 
 const camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
-camera.position.z = 4;
+camera.position.z = 16;
 
 //making a scene 
 const scene = new THREE.Scene();
@@ -90,7 +90,8 @@ sunDarkLightMesh.scale.setScalar(1.0001)
 sunGroup.add(sunDarkLightMesh)
 
 //adding particle to it
-const flameParticleSystem = new createFlameParticleSystem(2000, new THREE.Color("orange"));
+const flameParticleSystem = new createFlameParticleSystem(10000, new THREE.Color("orangered"));
+flameParticleSystem
 sunGroup.add(flameParticleSystem);
 
 
