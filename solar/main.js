@@ -5,6 +5,7 @@ import createParticleSystem from '../particleSystem';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { getFresnelMat } from '../getFresnelMat';
 import { color } from 'three/examples/jsm/nodes/Nodes.js';
+import createFlameParticleSystem from '../flameParticleSystem';
 
 //adding a renderer
 const renderer = new THREE.WebGLRenderer();
@@ -87,6 +88,10 @@ const sunDarkLight =  new THREE.MeshBasicMaterial({
 const sunDarkLightMesh = new THREE.Mesh(sunGeometry,sunDarkLight);
 sunDarkLightMesh.scale.setScalar(1.0001)
 sunGroup.add(sunDarkLightMesh)
+
+//adding particle to it
+const flameParticleSystem = new createFlameParticleSystem(2000, new THREE.Color("orange"));
+sunGroup.add(flameParticleSystem);
 
 
 //rendering it in a function]
