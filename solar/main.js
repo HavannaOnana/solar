@@ -3,6 +3,8 @@ import * as THREE from "three";
 import getStarfield from '../getStarfield';
 import createParticleSystem from '../particleSystem';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
+import { getFresnelMat } from '../getFresnelMat';
+import { color } from 'three/examples/jsm/nodes/Nodes.js';
 
 //adding a renderer
 const renderer = new THREE.WebGLRenderer();
@@ -19,7 +21,7 @@ const near = 0.1;
 const far = 700;
 
 const camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
-camera.position.z = 2;
+camera.position.z = 3;
 
 //making a scene 
 const scene = new THREE.Scene();
@@ -32,7 +34,8 @@ scene.fog = new THREE.FogExp2(0x000000, 0.05); // Fog with exponential decay
 
 //adding particles
 const particleColor = new THREE.Color("white");
-const particleSystem = createParticleSystem(200 , particleColor);
+const particleSystem = createParticleSystem(666 , particleColor);
+particleSystem.scale.set(4,4,4)
 scene.add(particleSystem);
 
 //making a function to stop zooming and in the canvas
@@ -48,6 +51,33 @@ window.addEventListener('wheel', (event) => {
 }, { passive: false });
 
 
+//the planets
+const loader = new THREE.TextureLoader();
+
+//the sun
+const sunGroup = new THREE.Group()
+sunGroup.position.x = 0
+sunGroup.rotation.z = -24.7 * Math.PI / 360 ;
+scene.add(sunGroup)
+
+//sun geometry
+const sunGeometry = new THREE.IcosahedronGeometry(1,20);
+const sunMaterial = new THREE.MeshBasicMaterial({
+  map : loader.load("/textures/thesun.png"),
+  color : "yellow"
+})
+
+const sunMesh = new THREE.Mesh(sunGeometry,sunMaterial);
+sunMesh.scale.set(1, 1, 1);
+sunGroup.add(sunMesh)
+
+const sunfrestMal = new getFresnelMat({rimHex : "orangered" , facingHex : "red"});
+const sunGlowMesh = new THREE.Mesh(sunGeometry , sunfrestMal);
+sunGlowMesh.scale.setScalar(1.03)
+sunGroup.add(sunGlowMesh)
+
+//adding the dakr spots to the sun for more realism
+
 
 
 //rendering it in a function]
@@ -55,6 +85,8 @@ function animate(){
   requestAnimationFrame(animate)
   stars.rotation.y += 0.0001; // Rotate the starfield
   particleSystem.rotation.z += 0.0001;
+  // rotation of the sun
+  sunMesh.rotation.z += 0.0001;
   renderer.render(scene, camera)
 }
 
