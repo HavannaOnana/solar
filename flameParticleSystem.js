@@ -40,16 +40,19 @@ export default function createFlameParticleSystem(particleCount = 2000, color = 
     particles.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
     particles.setAttribute('lifespan', new THREE.BufferAttribute(lifespans, 1));
 
-    // Load texture
     const textureLoader = new THREE.TextureLoader();
-    const flameTexture = textureLoader.load("/textures/sun.png");
+    const flameTexture = textureLoader.load("/textures/sun.png", (texture) => {
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+    });
+
 
     // Particle material
     const particleMaterial = new THREE.PointsMaterial({
-        size: 3, // Adjust size if needed
+        size:0.3, // Adjust size if needed
         map: flameTexture,
         vertexColors: true,
-        blending: THREE.AdditiveBlending,
+        blending: THREE.AdditiveBlending    ,
         transparent: true,
         alphaTest: 0.1 // Ensure this is appropriate for your texture
     });
