@@ -7,6 +7,7 @@ import { getFresnelMat } from '../getFresnelMat';
 import { color } from 'three/examples/jsm/nodes/Nodes.js';
 import createFlameParticleSystem from '../flameParticleSystem';
 
+
 //adding a renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth , window.outerHeight);
@@ -72,9 +73,9 @@ const sunMesh = new THREE.Mesh(sunGeometry,sunMaterial);
 sunMesh.scale.set(1, 1, 1);
 sunGroup.add(sunMesh)
 
-const sunfrestMal = new getFresnelMat({rimHex : "orangered" , facingHex : "red"});
+const sunfrestMal = new getFresnelMat({rimHex : "gold" , facingHex : "orangered"});
 const sunGlowMesh = new THREE.Mesh(sunGeometry , sunfrestMal);
-sunGlowMesh.scale.setScalar(1.03)
+sunGlowMesh.scale.setScalar(1.05)
 sunGroup.add(sunGlowMesh)
 
 
@@ -101,13 +102,15 @@ sunGroup.add(flameParticleSystem);
 
 
 
+
+
 //rendering it in a function]
 function animate(){
   requestAnimationFrame(animate)
   stars.rotation.y += 0.0001; // Rotate the starfield
   particleSystem.rotation.z += 0.0001;
   // rotation of the sun
-  sunGroup.rotation.z += 0.0001;
+  sunGroup.rotation.z += 0.0009;
   renderer.render(scene, camera)
 }
 
