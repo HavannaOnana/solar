@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export default function createFlameParticleSystem(particleCount = 2000, color = new THREE.Color("white")) {
+export default function createFlameParticleSystem(particleCount = 2000, color = new THREE.Color("red")) {
     // Create geometry and its attributes
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
@@ -41,7 +41,7 @@ export default function createFlameParticleSystem(particleCount = 2000, color = 
     particles.setAttribute('lifespan', new THREE.BufferAttribute(lifespans, 1));
 
     const textureLoader = new THREE.TextureLoader();
-    const flameTexture = textureLoader.load("/textures/sun.png", (texture) => {
+    const flameTexture = textureLoader.load("/textures/suns.png", (texture) => {
         texture.minFilter = THREE.LinearFilter;
         texture.magFilter = THREE.LinearFilter;
     });
@@ -49,7 +49,7 @@ export default function createFlameParticleSystem(particleCount = 2000, color = 
 
     // Particle material
     const particleMaterial = new THREE.PointsMaterial({
-        size:0.3, // Adjust size if needed
+        size:0.16, // Adjust size if needed
         map: flameTexture,
         vertexColors: true,
         blending: THREE.AdditiveBlending    ,

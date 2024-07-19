@@ -22,7 +22,7 @@ const near = 0.1;
 const far = 700;
 
 const camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
-camera.position.z = 5
+camera.position.z = 3   
 
 //making a scene 
 const scene = new THREE.Scene();
@@ -77,6 +77,7 @@ const sunGlowMesh = new THREE.Mesh(sunGeometry , sunfrestMal);
 sunGlowMesh.scale.setScalar(1.03)
 sunGroup.add(sunGlowMesh)
 
+
 //adding the dakr spots to the sun for more realism
 const sunDarkLight =  new THREE.MeshBasicMaterial({
   map : loader.load("/textures/clouds.jpg"),
@@ -90,9 +91,14 @@ sunDarkLightMesh.scale.setScalar(1.01)
 sunGroup.add(sunDarkLightMesh)
 
 //adding particle to it
-const flameParticleSystem = new createFlameParticleSystem(1099, new THREE.Color("orangered"));
-flameParticleSystem.scale.set(0.1, 0.01,0.01); 
+const flameParticleSystem = new createFlameParticleSystem(9000, new THREE.Color("orangered"));
+flameParticleSystem.scale.set(0.1, 0.1, 0.12); // Increase scale
+// Adjust particle material for stronger glow
+//flameParticleSystem.material.size = 1; // Increase particle size
+flameParticleSystem.material.opacity = 1
 sunGroup.add(flameParticleSystem);
+
+
 
 
 //rendering it in a function]
