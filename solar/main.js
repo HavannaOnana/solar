@@ -21,7 +21,7 @@ const near = 0.1;
 const far = 700;
 
 const camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
-camera.position.z = 3;
+camera.position.z = 4;
 
 //making a scene 
 const scene = new THREE.Scene();
@@ -77,7 +77,16 @@ sunGlowMesh.scale.setScalar(1.03)
 sunGroup.add(sunGlowMesh)
 
 //adding the dakr spots to the sun for more realism
+const sunDarkLight =  new THREE.MeshBasicMaterial({
+  map : loader.load("/textures/clouds.jpg"),
+  blending : THREE.AdditiveBlending,
+  color : "#820300",
 
+})
+
+const sunDarkLightMesh = new THREE.Mesh(sunGeometry,sunDarkLight);
+sunDarkLightMesh.scale.setScalar(1.0001)
+sunGroup.add(sunDarkLightMesh)
 
 
 //rendering it in a function]
@@ -86,7 +95,7 @@ function animate(){
   stars.rotation.y += 0.0001; // Rotate the starfield
   particleSystem.rotation.z += 0.0001;
   // rotation of the sun
-  sunMesh.rotation.z += 0.0001;
+  sunGroup.rotation.z += 0.0001;
   renderer.render(scene, camera)
 }
 
