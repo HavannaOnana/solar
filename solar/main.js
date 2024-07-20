@@ -71,7 +71,7 @@ const sunMaterial = new THREE.MeshBasicMaterial({
 
 const sunMesh = new THREE.Mesh(sunGeometry,sunMaterial);
 sunMesh.scale.set(1, 1, 1);
-sunGroup.add(sunMesh)
+sunGroup.add(sunMesh);
 
 const sunfrestMal = new getFresnelMat({rimHex : "gold" , facingHex : "orangered"});
 const sunGlowMesh = new THREE.Mesh(sunGeometry , sunfrestMal);
