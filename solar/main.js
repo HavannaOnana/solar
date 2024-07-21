@@ -67,7 +67,7 @@ const sunGeometry = new THREE.IcosahedronGeometry(1,20);
 const sunMaterial = new THREE.MeshBasicMaterial({
   map : loader.load("/textures/thesun.png"),
   color : "yellow"
-})
+});
 
 const sunMesh = new THREE.Mesh(sunGeometry,sunMaterial);
 sunMesh.scale.set(1, 1, 1);
