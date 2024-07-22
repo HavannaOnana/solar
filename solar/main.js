@@ -23,7 +23,7 @@ const near = 0.1;
 const far = 700;
 
 const camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
-camera.position.z = 10
+camera.position.z = 4
 //camera.position.x = 5
 
 //making a scene 
@@ -59,7 +59,7 @@ const loader = new THREE.TextureLoader();
 
 //the sun
 const sunGroup = new THREE.Group()
-sunGroup.position.x = 0
+sunGroup.position.x = -10
 sunGroup.rotation.z = -24.7 * Math.PI / 360 ;
 scene.add(sunGroup)
 
@@ -105,7 +105,7 @@ sunGroup.add(flameParticleSystem);
 
 // making the moon
 const moonGroup = new THREE.Group();
-moonGroup.position.x = 5;
+moonGroup.position.x = -5;
 moonGroup.rotation.z = -27.3 * Math.PI / 360 ;
 scene.add(moonGroup);
 
@@ -121,6 +121,26 @@ moonGroup.add(moonMesh);
 
 
 
+//making venus
+const venusGroup = new THREE.Group();
+venusGroup.position.x = 0;
+venusGroup.rotation.z = -243 * Math.PI / 360;
+scene.add(venusGroup);
+
+const venusGeometry = new THREE.IcosahedronGeometry(1,20);
+const venusMaterial = new THREE.MeshBasicMaterial({
+  map : loader.load("/textures/venus.jpg"),
+})
+const venusMesh = new THREE.Mesh(venusGeometry, venusMaterial);
+venusGroup.add(venusMesh);
+
+const venusfrestMel = new getFresnelMat({rimHex : "beige" , facingHex : "beige"});
+const venusGlowMesh = new THREE.Mesh(venusGeometry , venusfrestMel)
+venusGlowMesh.scale.setScalar(1.01)
+venusGroup.add(venusGlowMesh)
+
+
+
 
 //rendering it in a function]
 function animate(){
@@ -131,6 +151,8 @@ function animate(){
   sunGroup.rotation.z += 0.0009;
   //rotation of the moon
   moonGroup.rotation.z += 0.0009
+  // rotation of venus
+  venusGroup.rotation.z += 0.0009
   renderer.render(scene, camera)
 }
 
