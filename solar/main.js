@@ -23,7 +23,8 @@ const near = 0.1;
 const far = 700;
 
 const camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
-camera.position.z = 3   
+camera.position.z = 10
+//camera.position.x = 5
 
 //making a scene 
 const scene = new THREE.Scene();
@@ -102,6 +103,23 @@ sunGroup.add(flameParticleSystem);
 
 
 
+// making the moon
+const moonGroup = new THREE.Group();
+moonGroup.position.x = 5;
+moonGroup.rotation.z = -27.3 * Math.PI / 360 ;
+scene.add(moonGroup);
+
+const moonGeometry = new THREE.IcosahedronGeometry(1,20);
+const moonMaterial = new THREE.MeshBasicMaterial({
+  map : loader.load("/textures/moon.jpg"),
+  color : "white"
+})
+
+const moonMesh = new THREE.Mesh(moonGeometry,moonMaterial);
+moonGroup.add(moonMesh);
+
+
+
 
 
 //rendering it in a function]
@@ -111,6 +129,8 @@ function animate(){
   particleSystem.rotation.z += 0.0001;
   // rotation of the sun
   sunGroup.rotation.z += 0.0009;
+  //rotation of the moon
+  moonGroup.rotation.z += 0.0009
   renderer.render(scene, camera)
 }
 
