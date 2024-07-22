@@ -23,7 +23,7 @@ const near = 0.1;
 const far = 700;
 
 const camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
-camera.position.z = 4
+camera.position.z = 3
 //camera.position.x = 5
 
 //making a scene 
@@ -59,7 +59,7 @@ const loader = new THREE.TextureLoader();
 
 //the sun
 const sunGroup = new THREE.Group()
-sunGroup.position.x = -10
+sunGroup.position.x = -15;
 sunGroup.rotation.z = -24.7 * Math.PI / 360 ;
 scene.add(sunGroup)
 
@@ -105,7 +105,7 @@ sunGroup.add(flameParticleSystem);
 
 // making the moon
 const moonGroup = new THREE.Group();
-moonGroup.position.x = -5;
+moonGroup.position.x = -10;
 moonGroup.rotation.z = -27.3 * Math.PI / 360 ;
 scene.add(moonGroup);
 
@@ -123,8 +123,8 @@ moonGroup.add(moonMesh);
 
 //making venus
 const venusGroup = new THREE.Group();
-venusGroup.position.x = 0;
-venusGroup.rotation.z = -243 * Math.PI / 360;
+venusGroup.position.x = -5;
+venusGroup.rotation.z = -243 * Math.PI / 220;
 scene.add(venusGroup);
 
 const venusGeometry = new THREE.IcosahedronGeometry(1,20);
@@ -140,6 +140,52 @@ venusGlowMesh.scale.setScalar(1.01)
 venusGroup.add(venusGlowMesh)
 
 
+//making the earth
+const earthGroup = new THREE.Group();
+earthGroup.position.x = 0;
+earthGroup.rotation. z = -23.7 * Math.PI / 360;
+scene.add(earthGroup);
+
+const earthGeometry = new THREE.IcosahedronGeometry(1,20);
+const earthMaterial = new THREE.MeshBasicMaterial({
+  map : loader.load("/textures/earthy.jpg"),
+})
+
+const earthMesh = new THREE.Mesh(earthGeometry , earthMaterial);
+earthMesh.scale.setScalar(1.001)
+earthGroup.add(earthMesh);
+
+
+//adding the night version
+const earthNightlight = new THREE.MeshBasicMaterial({
+  map : loader.load("/textures/earthdark.png"),
+  blending : THREE.AdditiveBlending,
+  transparent : true,
+})
+
+//adding the mesh of the earthNightlight
+const earthNightlightMesh = new THREE.Mesh(earthGeometry,earthNightlight);
+earthGroup.add(earthNightlightMesh);
+
+//adding clouds
+const earthClouds = new THREE.MeshBasicMaterial({
+  map: loader.load("/textures/clouds.jpg"),
+  blending : THREE.AdditiveBlending,
+  transparent : true
+})
+// adding clouds mesh
+const earthCloudsMesh = new THREE.Mesh(earthGeometry,earthClouds);
+earthCloudsMesh.scale.setScalar(1.005)
+earthGroup.add(earthCloudsMesh);
+
+//adding a glow to the earth
+const earthfresnelMat = getFresnelMat();
+const earthGlowMesh = new THREE.Mesh(earthGeometry,earthfresnelMat);
+earthGlowMesh.scale.setScalar(1.01);
+earthGroup.add(earthGlowMesh);
+
+
+
 
 
 //rendering it in a function]
@@ -153,6 +199,8 @@ function animate(){
   moonGroup.rotation.z += 0.0009
   // rotation of venus
   venusGroup.rotation.z += 0.0009
+  //rotation of earth
+  earthGroup.rotation.y += 0.0009
   renderer.render(scene, camera)
 }
 
