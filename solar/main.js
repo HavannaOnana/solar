@@ -123,7 +123,7 @@ moonGroup.add(moonMesh);
 
 //making venus
 const venusGroup = new THREE.Group();
-venusGroup.position.x = -5;
+venusGroup.position.x = 10;
 venusGroup.rotation.z = -243 * Math.PI / 220;
 scene.add(venusGroup);
 
@@ -138,6 +138,9 @@ const venusfrestMel = new getFresnelMat({rimHex : "beige" , facingHex : "beige"}
 const venusGlowMesh = new THREE.Mesh(venusGeometry , venusfrestMel)
 venusGlowMesh.scale.setScalar(1.01)
 venusGroup.add(venusGlowMesh)
+
+
+
 
 
 //making the earth
@@ -160,7 +163,6 @@ earthGroup.add(earthMesh);
 const earthNightlight = new THREE.MeshBasicMaterial({
   map : loader.load("/textures/earthdark.png"),
   blending : THREE.AdditiveBlending,
-  transparent : true,
 })
 
 //adding the mesh of the earthNightlight
@@ -169,13 +171,14 @@ earthGroup.add(earthNightlightMesh);
 
 //adding clouds
 const earthClouds = new THREE.MeshBasicMaterial({
-  map: loader.load("/textures/clouds.jpg"),
+  map: loader.load("/textures/cloudss.png"),
   blending : THREE.AdditiveBlending,
-  transparent : true
+  transparent : true,
+  //color : "blue"
 })
 // adding clouds mesh
 const earthCloudsMesh = new THREE.Mesh(earthGeometry,earthClouds);
-earthCloudsMesh.scale.setScalar(1.005)
+earthCloudsMesh.scale.setScalar(1.001)
 earthGroup.add(earthCloudsMesh);
 
 //adding a glow to the earth
@@ -183,6 +186,8 @@ const earthfresnelMat = getFresnelMat();
 const earthGlowMesh = new THREE.Mesh(earthGeometry,earthfresnelMat);
 earthGlowMesh.scale.setScalar(1.01);
 earthGroup.add(earthGlowMesh);
+
+
 
 
 
