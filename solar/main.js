@@ -59,7 +59,7 @@ const loader = new THREE.TextureLoader();
 
 //the sun
 const sunGroup = new THREE.Group()
-sunGroup.position.x = -15;
+sunGroup.position.x = 0;
 sunGroup.rotation.z = -24.7 * Math.PI / 360 ;
 scene.add(sunGroup)
 
@@ -105,7 +105,7 @@ sunGroup.add(flameParticleSystem);
 
 // making the moon
 const moonGroup = new THREE.Group();
-moonGroup.position.x = -10;
+moonGroup.position.x = 5;
 moonGroup.rotation.z = -27.3 * Math.PI / 360 ;
 scene.add(moonGroup);
 
@@ -145,7 +145,7 @@ venusGroup.add(venusGlowMesh)
 
 //making the earth
 const earthGroup = new THREE.Group();
-earthGroup.position.x = 0;
+earthGroup.position.x = 15;
 earthGroup.rotation. z = -23.7 * Math.PI / 360;
 scene.add(earthGroup);
 
