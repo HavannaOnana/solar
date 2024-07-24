@@ -221,6 +221,8 @@ saturnGroup.add(saturnRingMesh);
 //selecting the div suntext from the html
 const sunText = document.querySelector('.suntext');
 
+//selcting the explore button from the html
+const sunTextExplore = document.querySelector('.explore');
 
 
 // The animation for the first scene
@@ -229,6 +231,7 @@ function beginningSun() {
     duration: 1,
     x: 0,
     delay: 2,
+    //removing 
     onUpdate: () => {
       if (Math.abs(sunGroup.position.x - 0) < 0.01) {
         sunText.classList.add('fade-in');
@@ -236,8 +239,37 @@ function beginningSun() {
     }
   });
 }
-
 beginningSun();
+
+//the animation to introduce the second planet the moon;
+function moonScene(){
+  //the sun leaving the scene
+  gsap.to(sunGroup.position,{
+    duration:5,
+    x : -8,
+    delay : 2
+  })
+
+  //the moon coming into the scene
+  gsap.to(moonGroup.position,{
+    duration : 5,
+    x : 1.5,
+    delay : 2,
+    onUpdate : ()=>{
+      if(Math.abs(moonGroup.position.x - 1.5)< 0.01){
+        console.log('Updating moon position and fading out sun text');
+        sunText.classList.remove('fade-in');
+        sunText.classList.add('fade-out');
+      }
+    }
+
+  })
+}
+
+//adding an event listener to make sure that when i click on the button on line 225 the moon scene shows
+sunTextExplore.addEventListener("click", function(){
+  moonScene()
+})
 
 
 //the function for rotating the planets this is standard and untouable
