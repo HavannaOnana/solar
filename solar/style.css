@@ -163,6 +163,7 @@ body {
   color: white;
   top: 25%;
   left: 5%;
+  opacity: 0;
 }
 
 .planet_h1{
@@ -199,4 +200,10 @@ body {
   width: 30%;
   text-align: left;
   font-family: monserrat;
+  transition: all 1s ease-in-out;
+  border: none;
+}
+
+.next:hover{
+  background-color: blanchedalmond;
 }

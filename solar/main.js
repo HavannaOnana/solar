@@ -224,6 +224,9 @@ const sunText = document.querySelector('.suntext');
 //selcting the explore button from the html
 const sunTextExplore = document.querySelector('.explore');
 
+//selecting the other div from the html
+const planetText = document.querySelector('.planet_text')
+
 
 // The animation for the first scene
 function beginningSun() {
@@ -239,7 +242,7 @@ function beginningSun() {
     }
   });
 }
-//beginningSun();
+beginningSun();
 
 //the animation to introduce the second planet the moon;
 function moonScene(){
@@ -260,6 +263,7 @@ function moonScene(){
         console.log('Updating moon position and fading out sun text');
         sunText.classList.remove('fade-in');
         sunText.classList.add('fade-out');
+        planetText.classList.add('fade-in')
       }
     }
 
@@ -271,7 +275,6 @@ sunTextExplore.addEventListener("click", function(){
   moonScene()
 })
 
-moonScene();
 
 //the function for rotating the planets this is standard and untouable
 function animate(){
