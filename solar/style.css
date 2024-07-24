@@ -109,3 +109,17 @@ body {
   background-color: orange;
 }
 
+.funfact{
+  position: absolute;
+  color: white;
+  font-family: monserrat;
+  font-size: smaller;
+  text-align: right;
+  top: 30%;
+  right: 4%;
+}
+
+.funfacth2{
+  font-family: venus;
+}
+
