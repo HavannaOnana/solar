@@ -155,3 +155,48 @@ body {
   opacity: 1; /* Start visible */
   animation: fadeOut 1s ease-out forwards; /* Apply the fade-out animation */
 }
+
+
+
+.planet_text{
+  position: absolute;
+  color: white;
+  top: 25%;
+  left: 5%;
+}
+
+.planet_h1{
+  font-family: venus;
+}
+
+.planet_p{
+  font-family: monserrat;
+}
+
+.planet_text .planetmainelement{
+  display: flex;
+  flex-direction: column;
+  font-family: venus;
+  font-size: small;
+}
+
+.pmep-in{
+  display: flex;
+  flex-direction: row;
+}
+
+.pmep-in-text{
+  margin-right:3%;
+  border: solid 2px white;
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+.next{
+  position: absolute;
+  top: 112%;
+  padding: 10px;
+  width: 30%;
+  text-align: left;
+  font-family: monserrat;
+}
