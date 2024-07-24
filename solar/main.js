@@ -202,13 +202,16 @@ const saturnMaterial = new THREE.MeshBasicMaterial({
 const saturnMesh = new THREE.Mesh(saturnGeometry, saturnMaterial);
 saturnGroup.add(saturnMesh);
 
-const saturnRingGeometry = new THREE.RingGeometry(1.2, 1.3, 100);;
+const saturnRingGeometry = new THREE.RingGeometry(1.2, 1.4, 100);;
 const saturnRingMaterial = new THREE.MeshBasicMaterial({
-  map : loader.load("/textures/saturnring.jpg")
+  map : loader.load("/textures/saturnring.png"),
+  side: THREE.DoubleSide
 })
 
 const saturnRingMesh = new THREE.Mesh(saturnRingGeometry,saturnRingMaterial);
-
+saturnRingMesh.rotation.x = Math.PI / -2;
+saturnRingMesh.position.y = 0;
+saturnRingMesh.position.z = 0
 saturnGroup.add(saturnRingMesh);
 
 
@@ -229,7 +232,7 @@ function animate(){
   //rotation of earth
   earthGroup.rotation.y += 0.0009
   //rotation of saturn 
-  saturnGroup.rotation.z += 0.0009;
+  saturnGroup.rotation.x += 0.0009;
   renderer.render(scene, camera)
 }
 
