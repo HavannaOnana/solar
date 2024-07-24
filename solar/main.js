@@ -239,7 +239,7 @@ function beginningSun() {
     }
   });
 }
-beginningSun();
+//beginningSun();
 
 //the animation to introduce the second planet the moon;
 function moonScene(){
@@ -271,6 +271,7 @@ sunTextExplore.addEventListener("click", function(){
   moonScene()
 })
 
+moonScene();
 
 //the function for rotating the planets this is standard and untouable
 function animate(){
