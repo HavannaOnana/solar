@@ -59,7 +59,7 @@ const loader = new THREE.TextureLoader();
 
 //the sun
 const sunGroup = new THREE.Group()
-sunGroup.position.x = 0;
+sunGroup.position.x = 20;
 sunGroup.rotation.z = -24.7 * Math.PI / 360 ;
 scene.add(sunGroup)
 
@@ -188,6 +188,28 @@ earthGlowMesh.scale.setScalar(1.01);
 earthGroup.add(earthGlowMesh);
 
 
+//making saturn
+const saturnGroup = new THREE.Group();
+saturnGroup.position.x = 0;
+saturnGroup.rotation. z = -10.756 * Math.PI / 140;
+scene.add(saturnGroup);
+
+const saturnGeometry = new THREE.IcosahedronGeometry(1,20);
+const saturnMaterial = new THREE.MeshBasicMaterial({
+  map : loader.load("/textures/saturn.jpg")
+})
+
+const saturnMesh = new THREE.Mesh(saturnGeometry, saturnMaterial);
+saturnGroup.add(saturnMesh);
+
+const saturnRingGeometry = new THREE.RingGeometry(1.2, 1.3, 100);;
+const saturnRingMaterial = new THREE.MeshBasicMaterial({
+  map : loader.load("/textures/saturnring.jpg")
+})
+
+const saturnRingMesh = new THREE.Mesh(saturnRingGeometry,saturnRingMaterial);
+
+saturnGroup.add(saturnRingMesh);
 
 
 
@@ -206,6 +228,8 @@ function animate(){
   venusGroup.rotation.z += 0.0009
   //rotation of earth
   earthGroup.rotation.y += 0.0009
+  //rotation of saturn 
+  saturnGroup.rotation.z += 0.0009;
   renderer.render(scene, camera)
 }
 
