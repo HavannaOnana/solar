@@ -1,5 +1,56 @@
+@font-face {
+  font-family: Venus;
+  src: url(./public/fonts/venusrisingrg-bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: monserrat;
+  src: url(./public/fonts/Montserrat-Bold.otf) format("opentype");
+}
+
 body {
   margin: 0;
   overflow: hidden;
   padding: 0;
+}
+
+
+.suntext h1{
+  position: absolute;
+  color: aliceblue;
+  font-family: Venus;
+  font-weight: bolder;
+  text-align: center;
+  top: 2%;
+  font-size: 3em;
+  width: 100%;
+}
+
+.suntext button{
+  position: absolute;
+  top:67%;
+  width: 20%;
+  transform: translateX(200%);
+  padding: 10px;
+  font-family: venus;
+  background-color: black;
+  color: white;
+  border: none;
+  transition: all 1s ease-in-out;
+}
+
+.suntext button:hover{
+
+  background-color: orangered;
+  border: 2px solid white;
+}
+
+.suntext p{
+  position: absolute;
+  color: white;
+  top: 92%;
+  text-align: center;
+  width: 100%;
+  font-family: monserrat;
+  font-size: smaller;
 }

@@ -6,6 +6,7 @@ import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { getFresnelMat } from '../getFresnelMat';
 import { color } from 'three/examples/jsm/nodes/Nodes.js';
 import createFlameParticleSystem from '../flameParticleSystem';
+import gsap from "gsap";
 
 
 //adding a renderer
@@ -23,7 +24,7 @@ const near = 0.1;
 const far = 700;
 
 const camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
-camera.position.z = 3
+camera.position.z = 3.5
 //camera.position.x = 5
 
 //making a scene 
@@ -59,7 +60,7 @@ const loader = new THREE.TextureLoader();
 
 //the sun
 const sunGroup = new THREE.Group()
-sunGroup.position.x = 20;
+sunGroup.position.x = 0;
 sunGroup.rotation.z = -24.7 * Math.PI / 360 ;
 scene.add(sunGroup)
 
@@ -190,7 +191,7 @@ earthGroup.add(earthGlowMesh);
 
 //making saturn
 const saturnGroup = new THREE.Group();
-saturnGroup.position.x = 0;
+saturnGroup.position.x = 20;
 saturnGroup.rotation. z = -10.756 * Math.PI / 140;
 scene.add(saturnGroup);
 
