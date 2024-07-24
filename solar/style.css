@@ -15,7 +15,7 @@ body {
 }
 
 
-.suntext h1{
+.suntext .h1{
   position: absolute;
   color: aliceblue;
   font-family: Venus;
@@ -28,7 +28,7 @@ body {
 
 .suntext button{
   position: absolute;
-  top:67%;
+  top:60%;
   width: 20%;
   transform: translateX(200%);
   padding: 10px;
@@ -42,10 +42,9 @@ body {
 .suntext button:hover{
 
   background-color: orangered;
-  border: 2px solid white;
 }
 
-.suntext p{
+.suntext .p{
   position: absolute;
   color: white;
   top: 92%;
@@ -54,3 +53,59 @@ body {
   font-family: monserrat;
   font-size: smaller;
 }
+
+.main_element{
+  position: absolute;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  top:30%;
+  left: 5%;
+  width: 15%;
+  text-align: center;
+  font-family: venus;
+}
+
+#ele{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 4%;
+}
+
+.elediv{
+  margin-right: 4%;
+  width: 100%;
+  text-align: center;
+  border: solid 2px white;
+  font-family: venus;
+  font-size: xx-small;
+  transition: all 1s ease;
+}
+
+ /* Different hover colors for each .elediv */
+ .elediv:nth-child(1):hover {
+  background-color: red;
+}
+
+.elediv:nth-child(2):hover {
+  background-color: blue;
+}
+
+/* Adjust selectors for subsequent rows */
+#ele:nth-of-type(2) .elediv:nth-child(1):hover {
+  background-color: green;
+}
+
+#ele:nth-of-type(2) .elediv:nth-child(2):hover {
+  background-color: yellow;
+}
+
+#ele:nth-of-type(3) .elediv:nth-child(1):hover {
+  background-color: purple;
+}
+
+#ele:nth-of-type(3) .elediv:nth-child(2):hover {
+  background-color: orange;
+}
+
