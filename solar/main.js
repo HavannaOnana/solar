@@ -216,10 +216,31 @@ saturnRingMesh.position.z = 0
 saturnGroup.add(saturnRingMesh);
 
 
+//the animations and text
+
+//selecting the div suntext from the html
+const sunText = document.querySelector('.suntext');
 
 
 
-//rendering it in a function]
+// The animation for the first scene
+function beginningSun() {
+  gsap.to(sunGroup.position, {
+    duration: 1,
+    x: 0,
+    delay: 2,
+    onUpdate: () => {
+      if (Math.abs(sunGroup.position.x - 0) < 0.01) {
+        sunText.classList.add('fade-in');
+      }
+    }
+  });
+}
+
+beginningSun();
+
+
+//the function for rotating the planets this is standard and untouable
 function animate(){
   requestAnimationFrame(animate)
   stars.rotation.y += 0.0001; // Rotate the starfield
