@@ -46,6 +46,8 @@ scene.add(particleSystem);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableRotate = false;
 controls.enableZoom = false;
+controls.enablePan = false;
+controls.enableDamping = false;
 
 // this event listner prevent us from zooming in
 window.addEventListener('wheel', (event) => {
@@ -225,7 +227,11 @@ const sunText = document.querySelector('.suntext');
 const sunTextExplore = document.querySelector('.explore');
 
 //selecting the other div from the html
-const planetText = document.querySelector('.planet_text')
+const planetText = document.querySelector('.planet_text');
+
+//selecting the next button 
+const nextButton = planetText.querySelector(".next")
+
 
 
 // The animation for the first scene
@@ -273,6 +279,37 @@ function moonScene(){
 //adding an event listener to make sure that when i click on the button on line 225 the moon scene shows
 sunTextExplore.addEventListener("click", function(){
   moonScene()
+})
+
+
+//adding venus to the scene in a function
+function venusScene(){
+  //the moon leaving the scene
+  gsap.to(moonGroup.position,{
+    duration : 5,
+    x : -8,
+    delay : 2
+
+  })
+
+  gsap.to(venusGroup.position,{
+    duration : 5,
+    x : 1.5,
+    delay : 2,
+    //updating the
+    onUpdate : ()=>{
+      if(Math.abs(venusGroup.position.x - 1.5) < 0.01){
+        planetText.querySelector(".planet_h1").textContent = "Venus";
+        
+      }
+    } 
+
+  })
+
+}
+
+nextButton.addEventListener("click" , function(){
+  venusScene();
 })
 
 

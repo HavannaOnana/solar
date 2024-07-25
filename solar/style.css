@@ -1,11 +1,11 @@
 @font-face {
   font-family: Venus;
-  src: url(./public/fonts/venusrisingrg-bold.ttf) format("truetype");
+  src: url(./fonts/venusrisingrg-bold.ttf) format("truetype");
 }
 
 @font-face {
   font-family: monserrat;
-  src: url(./public/fonts/Montserrat-Bold.otf) format("opentype");
+  src: url(./fonts/Montserrat-Bold.otf) format("opentype");
 }
 
 body {
@@ -206,4 +206,9 @@ body {
 
 .next:hover{
   background-color: blanchedalmond;
+}
+
+
+.otherplanettext{
+  display: none;
 }
