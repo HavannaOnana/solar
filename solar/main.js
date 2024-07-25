@@ -230,8 +230,14 @@ const sunTextExplore = document.querySelector('.explore');
 const planetText = document.querySelector('.planet_text');
 
 //selecting the next button 
-const nextButton = planetText.querySelector(".next")
+const nextButton = planetText.querySelector(".next");
 
+//selecting the div with other texts
+const otherPlanetTexts = document.querySelector('.otherplanettext');
+
+//selecting the div that contains the elemets
+const periodicElements = document.querySelector(".pmep-in .pmep-in-text");
+const periodicElements1 = document.querySelector(".pmep-in .pmep-in-text1");
 
 
 // The animation for the first scene
@@ -299,15 +305,25 @@ function venusScene(){
     //updating the
     onUpdate : ()=>{
       if(Math.abs(venusGroup.position.x - 1.5) < 0.01){
+        const venusContent = otherPlanetTexts.querySelector('.venus').innerHTML;
+        planetText.classList.add('fade-in');
         planetText.querySelector(".planet_h1").textContent = "Venus";
-        
+        planetText.querySelector(".planet_p").innerHTML = venusContent;
+        //editing the elements
+        periodicElements.querySelector(".number").textContent = "7";
+        periodicElements.querySelector(".alpha").textContent = "N";
+        periodicElements.querySelector(".alpha-text").textContent = "Nitrogen";
+
+        periodicElements1.querySelector(".number1").textContent = "6";
+        periodicElements1.querySelector(".alpha1").textContent = "C";
+        periodicElements1.querySelector(".alpha-text1").textContent = "Carbon";
       }
     } 
 
   })
 
 }
-
+//calling the function
 nextButton.addEventListener("click" , function(){
   venusScene();
 })

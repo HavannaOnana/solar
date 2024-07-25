@@ -193,6 +193,13 @@ body {
   padding-right: 9px;
 }
 
+.pmep-in-text1{
+  margin-right:3%;
+  border: solid 2px white;
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
 .next{
   position: absolute;
   top: 112%;
@@ -210,5 +217,5 @@ body {
 
 
 .otherplanettext{
-  display: none;
+ display: none;
 }
