@@ -334,7 +334,7 @@ function earthScene(){
   //venus leaving the earth
   gsap.to(venusGroup.position,{
     duration : 5,
-    x : -10,
+    x : -8,
     delay : 2
   })
 
@@ -366,6 +366,13 @@ function earthScene(){
 
 // adding the saturn scene
 function saturnScene(){
+
+  gsap.to(venusGroup.position,{
+    duration : 5,
+    x : -20,
+    delay : 2
+  })
+
   //earth leaving the scene
   gsap.to(earthGroup.position,{
     duration : 5,
@@ -407,15 +414,14 @@ function saturnScene(){
 
 // Updating the next button event listener to call the next scene functions in sequence
 let currentScene = 0;
+const sceneFunctions = [venusScene, earthScene, saturnScene];
 
 nextButton.addEventListener("click", function () {
   if (currentScene < sceneFunctions.length) {
-    sceneFunctions[currentScene]().then(() => {
-      currentScene++;
-    });
+    sceneFunctions[currentScene]();
+    currentScene++;
   }
 });
-
 
 //the function for rotating the planets this is standard and untouable
 function animate(){
