@@ -1,3 +1,4 @@
+![Screenshot_26](https://github.com/user-attachments/assets/7f90b27c-f2e3-4b1a-afcc-e49970cb1d96)
 # Planet Solar
 
 A website about different planets using Three.js. Vite is used to streamline the development process.
