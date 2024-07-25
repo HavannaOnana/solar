@@ -293,7 +293,7 @@ function venusScene(){
   //the moon leaving the scene
   gsap.to(moonGroup.position,{
     duration : 5,
-    x : -8,
+    x : -20,
     delay : 2
 
   })
@@ -327,6 +327,94 @@ function venusScene(){
 nextButton.addEventListener("click" , function(){
   venusScene();
 })
+
+
+//making the earth scene
+function earthScene(){
+  //venus leaving the earth
+  gsap.to(venusGroup.position,{
+    duration : 5,
+    x : -10,
+    delay : 2
+  })
+
+  // earth coming to the scene
+  gsap.to(earthGroup.position,{
+    duration : 5,
+    x : 1.5,
+    delay : 2,
+    //updating the scene
+    onUpdate : ()=>{
+      if(Math.abs(earthGroup.position.x - 1.5)< 0.01){
+        const earthContent = otherPlanetTexts.querySelector('.earth').innerHTML;
+        planetText.querySelector(".planet_h1").textContent = "Earth";
+        planetText.querySelector(".planet_p").innerHTML = earthContent;
+
+        //editing the elements
+        periodicElements.querySelector(".number").textContent = "8";
+        periodicElements.querySelector(".alpha").textContent = "O";
+        periodicElements.querySelector(".alpha-text").textContent = "Oxygen";
+
+        periodicElements1.querySelector(".number1").textContent = "11";
+        periodicElements1.querySelector(".alpha1").textContent = "NA";
+        periodicElements1.querySelector(".alpha-text1").textContent = "Sodium";
+
+      }
+    }
+  })
+}
+
+// adding the saturn scene
+function saturnScene(){
+  //earth leaving the scene
+  gsap.to(earthGroup.position,{
+    duration : 5,
+    x : -5 ,
+    delay : 2
+  })
+
+  //adding the saturn
+  gsap.to(saturnGroup.position,{
+    duration : 5,
+    x : 1.5,
+    delay : 2,
+    //updating the scene
+    onUpdate : () =>{
+      if(Math.abs(saturnGroup.position.x - 1.5) < 0.01){
+        const saturnContent = otherPlanetTexts.querySelector('.saturn').innerHTML;
+        planetText.querySelector(".planet_h1").textContent = "Saturn";
+        planetText.querySelector(".planet_p").innerHTML = saturnContent;
+
+        //editing the elements
+        periodicElements.querySelector(".number").textContent = "1";
+        periodicElements.querySelector(".alpha").textContent = "H";
+        periodicElements.querySelector(".alpha-text").textContent = "Hydrogen";
+
+        periodicElements1.querySelector(".number1").textContent = "2";
+        periodicElements1.querySelector(".alpha1").textContent = "HE";
+        periodicElements1.querySelector(".alpha-text1").textContent = "Helium";
+      }
+    }
+  })
+
+
+}
+
+
+
+
+
+
+// Updating the next button event listener to call the next scene functions in sequence
+let currentScene = 0;
+
+nextButton.addEventListener("click", function () {
+  if (currentScene < sceneFunctions.length) {
+    sceneFunctions[currentScene]().then(() => {
+      currentScene++;
+    });
+  }
+});
 
 
 //the function for rotating the planets this is standard and untouable
