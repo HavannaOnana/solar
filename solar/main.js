@@ -293,7 +293,7 @@ function venusScene(){
   //the moon leaving the scene
   gsap.to(moonGroup.position,{
     duration : 5,
-    x : -20,
+    x : -10,
     delay : 2
 
   })
